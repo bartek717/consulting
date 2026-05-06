@@ -91,6 +91,8 @@ const audiences = [
   "POS and software resellers",
   "Commercial service providers",
   "Staffing and recruiting firms",
+  "Commercial insurance brokers",
+  "Equipment leasing providers",
 ];
 
 const pilotItems = [
@@ -102,14 +104,6 @@ const pilotItems = [
   "Custom scoring reasons",
   "Outreach notes or recommended angles",
   "Short summary of best opportunities",
-];
-
-const nextSteps = [
-  "Monthly managed lead engine",
-  "Internal dashboard",
-  "Custom scraper and enrichment workflow",
-  "CRM or export workflow",
-  "Calling and transcript workflow",
 ];
 
 function SectionHeading({
@@ -133,7 +127,7 @@ function SectionHeading({
         {eyebrow}
       </p>
       <h2
-        className={`mt-4 text-3xl font-semibold tracking-tight sm:text-4xl ${
+        className={`mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl ${
           inverted ? "text-white" : "text-[#111827]"
         }`}
       >
@@ -190,10 +184,10 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#FAFAF7] text-[#111827]">
       <section className="overflow-hidden border-b border-[#E5E7EB]">
-        <div className="mx-auto grid min-h-[92svh] max-w-7xl items-center gap-12 px-6 py-10 sm:px-8 lg:grid-cols-[1fr_0.95fr] lg:px-10">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 sm:px-8 sm:py-20 lg:min-h-[92svh] lg:grid-cols-[1fr_0.95fr] lg:px-10 lg:py-10">
           <div className="max-w-3xl">
             <FounderBadge />
-            <h1 className="mt-8 text-5xl font-semibold tracking-tight text-[#111827] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-8 text-4xl font-semibold leading-[1.05] tracking-tight text-[#111827] sm:text-6xl lg:text-7xl">
               Custom-built lead systems for companies selling to local
               businesses.
             </h1>
@@ -219,7 +213,7 @@ export default function Home() {
 
           <div className="relative">
             <div className="absolute -left-10 top-12 h-40 w-40 rounded-full bg-[#CCFBF1] blur-3xl" />
-            <div className="relative rounded-lg border border-[#E5E7EB] bg-white p-4 shadow-2xl shadow-slate-900/10">
+            <div className="relative rounded-lg border border-[#E5E7EB] bg-white p-3 shadow-2xl shadow-slate-900/10 sm:p-4">
               <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#E5E7EB] pb-4">
                 <div>
                   <p className="text-sm font-semibold text-[#111827]">
@@ -234,7 +228,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="mt-4 overflow-x-auto">
-                <table className="w-full min-w-[620px] border-separate border-spacing-0 text-left text-sm">
+                <table className="w-full min-w-[560px] border-separate border-spacing-0 text-left text-sm sm:min-w-[620px]">
                   <thead>
                     <tr className="text-xs uppercase tracking-[0.12em] text-[#64748B]">
                       <th className="py-3 pr-4 font-semibold">Business</th>
@@ -293,7 +287,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-20 sm:px-8 lg:px-10">
+      <section className="px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
             <div>
@@ -318,7 +312,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-20 sm:px-8 lg:px-10">
+      <section className="bg-white px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Custom workflow"
@@ -341,7 +335,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="included" className="px-6 py-20 sm:px-8 lg:px-10">
+      <section id="included" className="px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="What is included"
@@ -379,9 +373,12 @@ export default function Home() {
                 </p>
                 <div className="mt-6 space-y-5">
                   {workflowSteps.map((step, index) => (
-                    <div key={step.title} className="grid grid-cols-[48px_1fr] gap-4">
+                    <div
+                      key={step.title}
+                      className="grid grid-cols-[40px_1fr] gap-3 sm:grid-cols-[48px_1fr] sm:gap-4"
+                    >
                       <div className="flex flex-col items-center">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F172A] text-sm font-bold text-white">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0F172A] text-sm font-bold text-white sm:h-10 sm:w-10">
                           {index + 1}
                         </span>
                         {index < workflowSteps.length - 1 ? (
@@ -426,7 +423,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-[#0F172A] px-6 py-20 sm:px-8 lg:px-10">
+      <section className="bg-[#0F172A] px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="Who it is for"
@@ -436,9 +433,12 @@ export default function Home() {
             Best fit for teams that already know their market but need a
             repeatable way to find, qualify, and prepare the right accounts.
           </SectionHeading>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-slate-700 bg-slate-700 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-slate-700 bg-slate-700 md:grid-cols-3">
             {audiences.map((audience) => (
-              <div key={audience} className="bg-[#1E293B] p-6 text-white">
+              <div
+                key={audience}
+                className="flex min-h-24 items-center bg-[#1E293B] p-6 text-white"
+              >
                 <p className="text-lg font-semibold">{audience}</p>
               </div>
             ))}
@@ -446,13 +446,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 py-20 sm:px-8 lg:px-10">
+      <section className="px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0F766E]">
               Pilot offer
             </p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-tight">
+            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
               Start with a focused 2-week pilot.
             </h2>
             <p className="mt-5 text-lg leading-8 text-[#475569]">
@@ -480,34 +480,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-20 sm:px-8 lg:px-10">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0F766E]">
-              After the pilot
-            </p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
-              If the pilot is useful, it can become the operating system for
-              your prospecting motion.
-            </h2>
-          </div>
-          <div className="space-y-3">
-            {nextSteps.map((step) => (
-              <div
-                key={step}
-                className="flex items-center justify-between rounded-lg border border-[#E5E7EB] bg-[#F8FAFC] p-5"
-              >
-                <span className="font-semibold">{step}</span>
-                <span className="text-[#0F766E]" aria-hidden="true">
-                  +
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-20 sm:px-8 lg:px-10">
+      <section className="px-6 py-16 sm:px-8 sm:py-20 lg:px-10">
         <div className="mx-auto max-w-5xl rounded-lg border border-[#E5E7EB] bg-white p-8 shadow-sm sm:p-10">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0F766E]">
             Built by Bartek Kowalski
@@ -527,9 +500,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-6 pb-20 sm:px-8 lg:px-10">
+      <section className="px-6 pb-16 sm:px-8 sm:pb-20 lg:px-10">
         <div className="mx-auto max-w-7xl rounded-lg bg-[#0F172A] px-6 py-14 text-center sm:px-10">
-          <h2 className="mx-auto max-w-3xl text-4xl font-semibold tracking-tight text-white">
+          <h2 className="mx-auto max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl">
             Want a lead system built around your exact market?
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-300">
