@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-label="Local SMB Lead Systems icon">
+  <rect width="64" height="64" rx="14" fill="#0F766E" />
+  <path
+    fill="#FFFFFF"
+    d="M32 55c-2.7-3.1-16-19.2-16-29.5C16 16.4 23.2 9 32 9s16 7.4 16 16.5C48 35.8 34.7 51.9 32 55Z"
+  />
+  <circle cx="32" cy="25" r="6.5" fill="#F59E0B" />
+</svg>
