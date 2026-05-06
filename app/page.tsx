@@ -127,14 +127,14 @@ function SectionHeading({
         {eyebrow}
       </p>
       <h2
-        className={`mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl ${
+        className={`mt-4 text-balance text-3xl font-semibold leading-tight tracking-tight sm:text-4xl ${
           inverted ? "text-white" : "text-[#111827]"
         }`}
       >
         {title}
       </h2>
       <p
-        className={`mt-5 text-lg leading-8 ${
+        className={`mt-5 text-pretty text-lg leading-8 ${
           inverted ? "text-slate-300" : "text-[#475569]"
         }`}
       >
@@ -182,16 +182,16 @@ function FounderBadge() {
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FAFAF7] text-[#111827]">
+    <main className="min-h-screen overflow-x-hidden bg-[#FAFAF7] text-[#111827]">
       <section className="overflow-hidden border-b border-[#E5E7EB]">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 sm:px-8 sm:py-20 lg:min-h-[92svh] lg:grid-cols-[1fr_0.95fr] lg:px-10 lg:py-10">
-          <div className="max-w-3xl">
+        <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-6 py-16 sm:px-8 sm:py-20 lg:min-h-[92svh] lg:grid-cols-[1fr_0.95fr] lg:px-10 lg:py-10">
+          <div className="min-w-0 max-w-3xl">
             <FounderBadge />
-            <h1 className="mt-8 text-4xl font-semibold leading-[1.05] tracking-tight text-[#111827] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-8 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-[#111827] sm:text-5xl md:text-6xl lg:text-7xl">
               Custom-built lead systems for companies selling to local
               businesses.
             </h1>
-            <p className="mt-6 max-w-2xl text-xl leading-9 text-[#475569]">
+            <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-[#475569] md:text-xl md:leading-9">
               I work directly with your team to build a prospecting workflow
               around your ICP, geography, and sales process, finding,
               enriching, scoring, and preparing local SMB leads for outreach.
@@ -211,9 +211,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative min-w-0">
             <div className="absolute -left-10 top-12 h-40 w-40 rounded-full bg-[#CCFBF1] blur-3xl" />
-            <div className="relative rounded-lg border border-[#E5E7EB] bg-white p-3 shadow-2xl shadow-slate-900/10 sm:p-4">
+            <div className="relative min-w-0 rounded-lg border border-[#E5E7EB] bg-white p-3 shadow-2xl shadow-slate-900/10 sm:p-4">
               <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#E5E7EB] pb-4">
                 <div>
                   <p className="text-sm font-semibold text-[#111827]">
@@ -227,7 +227,37 @@ export default function Home() {
                   4 territories
                 </div>
               </div>
-              <div className="mt-4 overflow-x-auto">
+              <div className="mt-4 grid gap-3 md:hidden">
+                {leadRows.slice(0, 3).map((lead) => (
+                  <article
+                    key={lead.name}
+                    className="rounded-md border border-[#E5E7EB] bg-[#F8FAFC] p-4"
+                  >
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <h3 className="truncate font-semibold text-[#111827]">
+                          {lead.name}
+                        </h3>
+                        <p className="mt-1 text-sm text-[#64748B]">
+                          {lead.category} · {lead.location}
+                        </p>
+                      </div>
+                      <span className="shrink-0 rounded-full bg-[#0F172A] px-2.5 py-1 text-xs font-bold text-white">
+                        {lead.score}
+                      </span>
+                    </div>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <span className="rounded-full bg-[#CCFBF1] px-2.5 py-1 text-xs font-semibold text-[#115E59]">
+                        {lead.signal}
+                      </span>
+                      <span className="rounded-full border border-[#E5E7EB] bg-white px-2.5 py-1 text-xs font-medium text-[#475569]">
+                        {lead.angle}
+                      </span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+              <div className="mt-4 hidden min-w-0 overflow-x-auto md:block">
                 <table className="w-full min-w-[560px] border-separate border-spacing-0 text-left text-sm sm:min-w-[620px]">
                   <thead>
                     <tr className="text-xs uppercase tracking-[0.12em] text-[#64748B]">
