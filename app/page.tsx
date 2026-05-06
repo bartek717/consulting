@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 const contactHref =
   "mailto:bartek@bartekkowalski.ca?subject=Local%20SMB%20Lead%20Systems%20pilot";
 
@@ -57,39 +59,28 @@ const customizations = [
   "Optional call workflow",
 ];
 
-const capabilities = [
+const workflowSteps = [
   {
-    title: "Local lead sourcing",
-    body: "Pull prospects from Google Maps and Places around the exact categories, cities, radiuses, and territories that matter.",
+    title: "Source",
+    body: "Pull local businesses from Google Maps and Places by category, city, radius, and territory.",
   },
   {
-    title: "Website enrichment",
-    body: "Crawl business websites to collect service pages, contact details, positioning, financing language, and missing-site signals.",
+    title: "Enrich",
+    body: "Crawl websites, detect service keywords, review signals, financing language, and missing info.",
   },
   {
-    title: "Keyword detection",
-    body: "Detect service, financing, hiring, booking, growth, or operational keywords based on your sales motion.",
+    title: "Rank",
+    body: "Deduplicate, score fit, and add the reason each lead belongs in the outreach queue.",
   },
-  {
-    title: "Custom scoring",
-    body: "Rank leads by fit and buying signals, with readable reasons your sales team can use before outreach.",
-  },
-  {
-    title: "Deduplication",
-    body: "Clean repeated businesses across categories, nearby locations, exports, and repeated searches.",
-  },
-  {
-    title: "CSV and sheet exports",
-    body: "Deliver ranked lists that are useful immediately, before a full dashboard or internal tool is worth building.",
-  },
-  {
-    title: "Dashboard or internal tool",
-    body: "Turn the pilot into a lightweight interface for territories, scoring rules, exports, and review workflows.",
-  },
-  {
-    title: "Call workflow support",
-    body: "Optionally connect call automation, logs, transcripts, and outcomes through tools like Vapi.",
-  },
+];
+
+const pilotOutputs = [
+  "500-1,000 ranked leads",
+  "CSV or sheet export",
+  "Fit scores and reasons",
+  "Website, review, and category signals",
+  "Suggested outreach angles",
+  "Best-opportunity summary",
 ];
 
 const audiences = [
@@ -170,16 +161,38 @@ function PrimaryCta({ className = "" }: { className?: string }) {
   );
 }
 
+function FounderBadge() {
+  return (
+    <div className="inline-flex items-center gap-3 rounded-full border border-[#E5E7EB] bg-white p-1.5 pr-4 text-left shadow-sm shadow-slate-900/5">
+      <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full bg-[#141414] ring-2 ring-[#CCFBF1]">
+        <Image
+          src="/me.png"
+          alt="Portrait of Bartek Kowalski"
+          width={96}
+          height={96}
+          priority
+          className="h-full w-full object-cover object-top"
+        />
+      </div>
+      <div>
+        <p className="text-sm font-semibold text-[#111827]">
+          Local SMB Lead Systems
+        </p>
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#115E59]">
+          Founder-built by Bartek
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#FAFAF7] text-[#111827]">
       <section className="overflow-hidden border-b border-[#E5E7EB]">
         <div className="mx-auto grid min-h-[92svh] max-w-7xl items-center gap-12 px-6 py-10 sm:px-8 lg:grid-cols-[1fr_0.95fr] lg:px-10">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-teal-200 bg-white px-3 py-1 text-sm font-medium text-[#115E59] shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-[#0F766E]" />
-              Local SMB Lead Systems by Bartek Kowalski
-            </div>
+            <FounderBadge />
             <h1 className="mt-8 text-5xl font-semibold tracking-tight text-[#111827] sm:text-6xl lg:text-7xl">
               Custom-built lead systems for companies selling to local
               businesses.
@@ -332,28 +345,83 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             eyebrow="What is included"
-            title="A prospecting workflow from local discovery to outreach-ready lists."
+            title="One custom workflow. One usable lead list."
           >
-            The first useful output is usually a ranked CSV or sheet. A
-            dashboard comes later only if it helps your team move faster.
+            We start with your ICP and territory, then turn local business data
+            into ranked outreach rows.
           </SectionHeading>
-          <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {capabilities.map((capability, index) => (
-              <article
-                key={capability.title}
-                className={`rounded-lg border border-[#E5E7EB] bg-white p-6 shadow-sm ${
-                  index === 0 || index === 3 ? "lg:col-span-2" : ""
-                }`}
-              >
-                <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-md bg-[#CCFBF1] text-sm font-bold text-[#115E59]">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-                <h3 className="text-xl font-semibold">{capability.title}</h3>
-                <p className="mt-3 leading-7 text-[#475569]">
-                  {capability.body}
+          <div className="mt-12 overflow-hidden rounded-lg border border-[#E5E7EB] bg-white shadow-sm">
+            <div className="grid lg:grid-cols-[0.8fr_1.25fr_0.95fr]">
+              <div className="border-b border-[#E5E7EB] bg-[#F8FAFC] p-6 sm:p-8 lg:border-b-0 lg:border-r">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0F766E]">
+                  Input
                 </p>
-              </article>
-            ))}
+                <h3 className="mt-4 text-2xl font-semibold tracking-tight">
+                  Your market constraints
+                </h3>
+                <div className="mt-6 space-y-3">
+                  {["One niche", "One geography", "Your scoring rules"].map(
+                    (item) => (
+                      <div
+                        key={item}
+                        className="rounded-md border border-[#E5E7EB] bg-white px-4 py-3 font-medium"
+                      >
+                        {item}
+                      </div>
+                    ),
+                  )}
+                </div>
+              </div>
+
+              <div className="border-b border-[#E5E7EB] p-6 sm:p-8 lg:border-b-0 lg:border-r">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-[#0F766E]">
+                  Workflow
+                </p>
+                <div className="mt-6 space-y-5">
+                  {workflowSteps.map((step, index) => (
+                    <div key={step.title} className="grid grid-cols-[48px_1fr] gap-4">
+                      <div className="flex flex-col items-center">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0F172A] text-sm font-bold text-white">
+                          {index + 1}
+                        </span>
+                        {index < workflowSteps.length - 1 ? (
+                          <span className="mt-3 h-full min-h-8 w-px bg-[#E5E7EB]" />
+                        ) : null}
+                      </div>
+                      <div className="pb-2">
+                        <h3 className="text-xl font-semibold">{step.title}</h3>
+                        <p className="mt-2 leading-7 text-[#475569]">
+                          {step.body}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-[#0F172A] p-6 text-white sm:p-8">
+                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-teal-200">
+                  Output
+                </p>
+                <h3 className="mt-4 text-2xl font-semibold tracking-tight">
+                  A ranked list your team can use immediately.
+                </h3>
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {pilotOutputs.map((output) => (
+                    <span
+                      key={output}
+                      className="rounded-full border border-slate-600 bg-[#1E293B] px-3 py-1.5 text-sm font-medium text-slate-100"
+                    >
+                      {output}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-6 border-t border-slate-700 pt-5 text-sm leading-6 text-slate-300">
+                  Dashboard, CRM handoff, or calling workflows come after the
+                  pilot if they make the system more useful.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -471,6 +539,36 @@ export default function Home() {
           <PrimaryCta className="mt-8" />
         </div>
       </section>
+
+      <footer className="border-t border-[#E5E7EB] px-6 py-8 sm:px-8 lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-3">
+            <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full bg-[#141414] ring-2 ring-white">
+              <Image
+                src="/me.png"
+                alt="Portrait of Bartek Kowalski"
+                width={88}
+                height={88}
+                className="h-full w-full object-cover object-top"
+              />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-[#111827]">
+                Bartek Kowalski
+              </p>
+              <p className="text-sm text-[#64748B]">
+                Local SMB Lead Systems
+              </p>
+            </div>
+          </div>
+          <a
+            href={contactHref}
+            className="text-sm font-semibold text-[#115E59] transition hover:text-[#0F766E] focus:outline-none focus:ring-4 focus:ring-teal-100"
+          >
+            bartek@bartekkowalski.ca
+          </a>
+        </div>
+      </footer>
     </main>
   );
 }
